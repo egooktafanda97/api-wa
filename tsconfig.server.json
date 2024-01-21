@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "bin/",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "isolatedModules": false,
+    "noEmit": false,
+    "target": "es2017",
+    "moduleResolution": "node",
+  },
+  "include": [
+    "server/**/*.ts",
+    "typings/**/*.ts"
+  ]
+}

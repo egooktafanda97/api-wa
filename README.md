@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#API WA GATEWAY
 
-## Getting Started
+Gunakan node js versi >=16
 
-First, run the development server:
+# Buat Session Baru
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Endpoint
+
+```
+http://localhost:5040/api/new-session?session=(nama session)&scan=true&user_id=(user id login)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Metode**: GET
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Parameter
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `session` (String): ID unik data.
+- `scan` (Boolean): bernilai true.
+- `user_id` (Number): id dari user login
 
-## Learn More
+#
 
-To learn more about Next.js, take a look at the following resources:
+# Get Session
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Endpoint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+http://localhost:5040/api/get-session/:id
+```
 
-## Deploy on Vercel
+- **Metode**: GET
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Prefix
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `id` (Number): ini merupakan id dari user yang login / terdaftar.
+
+#
+
+# Destory Session
+
+### Endpoint
+
+```
+http://localhost:5040/api/destory/:sessions
+```
+
+- **Metode**: GET
+
+#### Prefix
+
+- `sessions` (String): ini merupakan nama dari session.
+
+#
+
+# Send Message
+
+### Endpoint
+
+```
+http://localhost:5040/api/send-text
+```
+
+- **Metode**: POST
+
+#### Body
+
+```
+{
+    "session":"98582",
+    "to":"6282284733404",
+    "text":"ego"
+}
+```
+
+# Send BoadCast
+
+### Endpoint
+
+```
+http://localhost:5040/api/send-broadcart
+```
+
+- **Metode**: POST
+
+#### Body
+
+```
+{
+    "session":"98582",
+    "to":"6282284733404",
+    "text":"ego"
+}
+```
