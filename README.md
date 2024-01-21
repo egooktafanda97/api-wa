@@ -2,6 +2,15 @@
 
 Gunakan node js versi >=16
 
+### rename .env.example ke .env
+
+### install
+
+```
+yarn install
+yarn build
+```
+
 # Buat Session Baru
 
 ### Endpoint
