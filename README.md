@@ -73,11 +73,11 @@ http://localhost:5040/api/send-text
 
 #### Body
 
-```
+```json
 {
-    "session":"98582",
-    "to":"6282284733404",
-    "text":"ego"
+  "session": "98582",
+  "to": "6282284733404",
+  "text": "ego"
 }
 ```
 
@@ -93,10 +93,22 @@ http://localhost:5040/api/send-broadcart
 
 #### Body
 
-```
+```json
 {
-    "session":"98582",
-    "to":"6282284733404",
-    "text":"ego"
+  "session": "98582",
+  "data": [
+    {
+      "to": "6282284733404",
+      "text": "ego"
+    },
+    {
+      "to": "6282284733404",
+      "text": "ego"
+    },
+    {
+      "to": "6282284733404",
+      "text": "ego"
+    }
+  ]
 }
 ```
