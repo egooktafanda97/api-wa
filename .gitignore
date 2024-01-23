@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+wa_credentials
+wa_credentials/
+wa_credentials/*
 
 # testing
 /coverage
