@@ -8,6 +8,8 @@
 wa_credentials
 wa_credentials/
 wa_credentials/*
+public/uploads/*
+public/uploads/
 
 # testing
 /coverage
