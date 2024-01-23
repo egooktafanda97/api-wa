@@ -104,10 +104,11 @@ export class WaMessageController {
   @Post('/api/send-file')
   public async sendFile(@UploadedFile('files', { options: upload }) file: any, @Req() request: any, @Res() response: any) {
     try {
+      const { to, text, isGroup, session }: { to: string; text: string; isGroup: boolean; session: string } = request?.body;
       const props: any = {
-        sessionId: '79653',
-        to: '6282284733404',
-        text: 'testt',
+        sessionId: session,
+        to: to,
+        text: text ?? '',
         file: `${file?.filename}`
       };
       const fileExtension = file.originalname.split('.').pop()?.toLowerCase();
@@ -124,6 +125,54 @@ export class WaMessageController {
         }
       }
       return ResponseApi.success('Ok', []);
+    } catch (error) {
+      return ResponseApi.error('error', error);
+    }
+  }
+
+  @Post('/api/send-file-broadcast')
+  public async sendFileBroadCast(@UploadedFile('files', { options: upload }) file: any, @Req() request: any, @Res() response: any) {
+    try {
+      const sessionId = request.body.session || request.query.session || request.headers.session;
+      const parseData: any = JSON.parse(request.body.data ?? '[]');
+
+      const delay = request.body.delay || request.query.delay || request.headers.delay;
+      if (!sessionId) {
+        return {
+          status: false,
+          data: {
+            error: 'Session Not Found'
+          }
+        };
+      }
+
+      for (const dt of parseData) {
+        const to = dt.to;
+        const text = dt.text;
+        const isGroup = !!dt.isGroup;
+        const props: any = {
+          sessionId: sessionId,
+          to: to,
+          text: text ?? '',
+          file: `${file?.filename}`
+        };
+        const fileExtension = file.originalname.split('.').pop()?.toLowerCase();
+        if (fileExtension) {
+          if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+            await this.imageSend(props);
+          } else if (['mp4', 'avi', 'mkv'].includes(fileExtension)) {
+            await this.vidioSend(props);
+          } else if (['mp3', 'wav', 'ogg'].includes(fileExtension)) {
+            await this.voiceSend(props);
+          } else {
+            props.filename = file?.filename;
+            await this.fileSend(props);
+          }
+        }
+
+        await whatsapp.createDelay(delay ?? 1000);
+      }
+      return ResponseApi.success('Bulk Message is Processing', []);
     } catch (error) {
       return ResponseApi.error('error', error);
     }

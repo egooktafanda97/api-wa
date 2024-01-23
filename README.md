@@ -9,6 +9,7 @@ Gunakan node js versi >=16
 ```
 yarn install
 yarn build
+yarn start
 ```
 
 # Buat Session Baru
@@ -132,5 +133,41 @@ http://localhost:5040/api/send-file
 ```
 
 files:(file uploaded)
+session:"98582"
+to: "628xxx"
+text: "pesan"
+
+```
+
+#
+
+# Send File Broadcast | Image | vidio | voice
+
+### Endpoint
+
+```
+
+http://localhost:5040/api/send-file-broadcast
+
+```
+
+- **Metode**: POST
+
+#### Body FormData
+
+```
+
+files:(file uploaded)
+session:"98582"
+data:[
+ {
+      "to": "6282284733404",
+      "text": "ego"
+    },
+    {
+      "to": "6282284733404",
+      "text": "ego"
+    }
+]
 
 ```
