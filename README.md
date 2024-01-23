@@ -112,3 +112,25 @@ http://localhost:5040/api/send-broadcart
   ]
 }
 ```
+
+#
+
+# Send File | Image | vidio | voice
+
+### Endpoint
+
+```
+
+http://localhost:5040/api/send-file
+
+```
+
+- **Metode**: POST
+
+#### Body FormData
+
+```
+
+files:(file uploaded)
+
+```

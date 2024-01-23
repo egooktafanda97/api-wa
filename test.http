@@ -1,9 +1,0 @@
-POST http://localhost:5040/api/send-text
-Content-Type: application/json
-
-{
-  "to": "recipient",
-  "text": "Hello, this is a test message",
-  "isGroup": false,
-  "session": "example"
-}

@@ -30,6 +30,7 @@ const wss = WssServers();
     useExpressServer(server, {
       controllers: [UserController, SessionController, WaMessageController]
     });
+    server.use('/uploads', express.static('uploads'));
     server.all('*', (req: Request, res: Response) => {
       return handle(req, res);
     });
