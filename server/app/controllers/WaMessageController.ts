@@ -113,6 +113,7 @@ export class WaMessageController {
       };
       const fileExtension = file.originalname.split('.').pop()?.toLowerCase();
       if (fileExtension) {
+        props.filename = file?.filename;
         if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
           await this.imageSend(props);
         } else if (['mp4', 'avi', 'mkv'].includes(fileExtension)) {
@@ -120,7 +121,6 @@ export class WaMessageController {
         } else if (['mp3', 'wav', 'ogg'].includes(fileExtension)) {
           await this.voiceSend(props);
         } else {
-          props.filename = file?.filename;
           await this.fileSend(props);
         }
       }
